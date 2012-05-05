@@ -8,19 +8,20 @@
 
 */
 
+// Do a dissolve effect.
 void dissolve(int step_time, int steps){
 	for (int i = 0; i<steps; i++){
-		blank_random_pixel();
+		random_pixel(0);
 		delay(step_time);
 	}
 	dmd.clearScreen( true );
 }
 
-
-void blank_random_pixel(){
+// Set or clear a random pixel on the display.
+void random_pixel(int is_on){
 	int x = (int)random(32);
 	int y = (int)random(16);
 	disable_refresh();
-	dmd.writePixel(x,y,GRAPHICS_NORMAL,0);
+	dmd.writePixel(x,y,GRAPHICS_NORMAL,is_on);
 	enable_refresh();
 }

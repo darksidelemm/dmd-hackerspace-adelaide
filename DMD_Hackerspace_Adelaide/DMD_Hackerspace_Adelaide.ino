@@ -70,7 +70,7 @@ static byte ha_logo[] = {
    
 void loop(void){
 	dmd.clearScreen( true );
-	
+
 	// Scrolling Marquee
 	dmd.selectFont(Arial_Black_16);
 	dmd.drawMarquee("Hackerspace is in session!",26,(32*DISPLAYS_ACROSS)-1,0);
@@ -96,6 +96,19 @@ void loop(void){
 	
 	// Dissolve to black.
 	dissolve(1,2000); //1ms period, 2000 steps - should take 2 seconds.
+	
+	// Place 100 random pixels on the screen.
+	for (int i=0; i<100; i++){
+		random_pixel(1);
+		delay(20);
+	}
+	
+	// Run Conway's Game of Life for 100 iterations.
+	for(int i = 0; i<100; i++){
+		GOL_run_step();
+		delay(50); // Small delay.
+	}
+	dissolve(1,2000);
 }
 
 
